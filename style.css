@@ -1,83 +1,81 @@
 body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-  background: #f7f8fa;
-  color: #111;
+  background: var(--bg);
+  color: var(--text);
+  transition: 0.3s ease;
 }
-
-nav {
+:root {
+  --bg: #f7f7f7;
+  --text: #111;
+  --box: #fff;
+  --accent: #007aff;
+}
+body.dark {
+  --bg: #121212;
+  --text: #fff;
+  --box: #1e1e1e;
+  --accent: #0a84ff;
+}
+header {
+  background: var(--box);
+  padding: 1em;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  padding: 10px 20px;
-  background: #fff;
-  border-bottom: 1px solid #ddd;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
 }
-
-.logo {
-  font-size: 1.4em;
+header h1 {
+  font-size: 1.5em;
+  margin: 0;
+}
+nav {
+  margin-top: 1em;
+}
+nav button {
+  background: var(--box);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 0.5em 1em;
+  margin: 0.2em;
   font-weight: bold;
+  color: var(--accent);
 }
-
-.tabs button {
-  background: none;
-  border: none;
-  margin: 0 5px;
-  font-size: 1em;
-  cursor: pointer;
-}
-
 main {
-  padding: 20px;
+  padding: 1em;
 }
-
-.tab {
-  display: none;
-}
-
-.tab.active {
-  display: block;
-}
-
-.block {
-  background: white;
-  border-radius: 16px;
-  padding: 15px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-}
-
-input, button {
-  padding: 10px;
+input {
+  padding: 0.5em;
+  margin: 0.2em 0;
+  width: 100%;
   border-radius: 10px;
   border: 1px solid #ccc;
-  margin: 5px 0;
-  width: 100%;
 }
-
 button {
-  background: black;
+  padding: 0.6em;
+  margin: 0.5em 0;
+  background: var(--accent);
   color: white;
   border: none;
+  border-radius: 10px;
 }
-
+#food-list div, table {
+  background: var(--box);
+  border-radius: 10px;
+  padding: 0.5em;
+  margin-top: 0.5em;
+}
 table {
   width: 100%;
   border-collapse: collapse;
 }
-
-table, th, td {
-  border: 1px solid #ccc;
-}
-
 th, td {
-  padding: 10px;
+  padding: 0.6em;
   text-align: center;
 }
-
-.goal {
-  margin-top: 20px;
+canvas {
+  width: 100% !important;
+  max-width: 400px;
+}
+.goal-input {
+  margin-top: 1em;
 }

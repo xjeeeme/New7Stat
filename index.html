@@ -3,57 +3,70 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>7Stat — Weight & Food Tracker</title>
+  <title>7Stat</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <nav>
-    <div class="logo">7Stat</div>
-    <div class="tabs">
-      <button onclick="showTab('home')">Главная</button>
-      <button onclick="showTab('stats')">Статистика</button>
-      <button onclick="showTab('weight')">Вес</button>
+  <header>
+    <h1>7Stat</h1>
+    <div id="datetime-weather">
+      <span id="current-date"></span>
+      <span id="current-time"></span>
+      <span id="weather">☁️ 18°C</span>
     </div>
-    <div id="date-time"></div>
-  </nav>
+    <nav>
+      <button onclick="switchTab('home')">Главная</button>
+      <button onclick="switchTab('stats')">Статистика</button>
+      <button onclick="switchTab('weight')">Вес</button>
+      <button onclick="toggleTheme()">🌗</button>
+    </nav>
+  </header>
 
   <main>
-    <section id="home" class="tab active">
-      <div class="block" id="weightInputBlock">
+    <section id="home" class="tab">
+      <div id="weight-input-container">
         <h2>Сегодняшний вес</h2>
-        <input type="number" id="todayWeight" placeholder="Введите вес (кг)" />
-        <button onclick="saveWeight()">Сохранить</button>
+        <input type="number" id="today-weight" placeholder="кг" />
+        <button onclick="saveWeight()">Сохранить вес</button>
       </div>
-      <div class="block">
-        <h2>Добавить продукт</h2>
-        <input type="text" id="product" placeholder="Продукт" />
-        <input type="number" id="calories" placeholder="Калории" />
-        <button onclick="addProduct()">Добавить</button>
-        <div id="productList"></div>
-        <div id="caloriesSum"></div>
+
+      <div id="food-input-container" style="display:none;">
+        <h2>Что ты съел?</h2>
+        <input type="text" id="food-name" placeholder="Название продукта" />
+        <input type="number" id="food-calories" placeholder="Калории" />
+        <input type="number" id="food-protein" placeholder="Белки (необязательно)" />
+        <input type="number" id="food-fat" placeholder="Жиры (необязательно)" />
+        <input type="number" id="food-carbs" placeholder="Углеводы (необязательно)" />
+        <button onclick="addFood()">Добавить</button>
+
+        <div id="food-list"></div>
+        <div id="daily-summary"></div>
       </div>
     </section>
 
-    <section id="stats" class="tab">
-      <h2>История</h2>
-      <table id="statsTable">
-        <thead><tr><th>Дата</th><th>Вес</th><th>Калории</th></tr></thead>
-        <tbody></tbody>
+    <section id="stats" class="tab" style="display:none;">
+      <h2>Статистика</h2>
+      <table>
+        <thead>
+          <tr><th>Дата</th><th>Калории</th><th>Вес</th></tr>
+        </thead>
+        <tbody id="stats-table"></tbody>
       </table>
     </section>
 
-    <section id="weight" class="tab">
+    <section id="weight" class="tab" style="display:none;">
       <h2>График веса</h2>
-      <canvas id="weightChart"></canvas>
-      <div class="goal">
-        <input type="number" id="goalWeight" placeholder="Целевой вес (кг)" />
-        <button onclick="setGoal()">Установить цель</button>
-        <p id="goalLeft"></p>
+      <canvas id="weight-chart"></canvas>
+      <div class="goal-input">
+        <input type="number" id="current-weight" placeholder="Текущий вес" />
+        <input type="number" id="goal-weight" placeholder="Цель по весу" />
+        <button onclick="updateGoal()">Сохранить цель</button>
       </div>
+      <div id="weight-diff"></div>
     </section>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
