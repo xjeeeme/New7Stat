@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>7Stat — Weight & Food Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <div class="logo">7Stat</div>
+    <div class="tabs">
+      <button onclick="showTab('home')">Главная</button>
+      <button onclick="showTab('stats')">Статистика</button>
+      <button onclick="showTab('weight')">Вес</button>
+    </div>
+    <div id="date-time"></div>
+  </nav>
+
+  <main>
+    <section id="home" class="tab active">
+      <div class="block" id="weightInputBlock">
+        <h2>Сегодняшний вес</h2>
+        <input type="number" id="todayWeight" placeholder="Введите вес (кг)" />
+        <button onclick="saveWeight()">Сохранить</button>
+      </div>
+      <div class="block">
+        <h2>Добавить продукт</h2>
+        <input type="text" id="product" placeholder="Продукт" />
+        <input type="number" id="calories" placeholder="Калории" />
+        <button onclick="addProduct()">Добавить</button>
+        <div id="productList"></div>
+        <div id="caloriesSum"></div>
+      </div>
+    </section>
+
+    <section id="stats" class="tab">
+      <h2>История</h2>
+      <table id="statsTable">
+        <thead><tr><th>Дата</th><th>Вес</th><th>Калории</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section id="weight" class="tab">
+      <h2>График веса</h2>
+      <canvas id="weightChart"></canvas>
+      <div class="goal">
+        <input type="number" id="goalWeight" placeholder="Целевой вес (кг)" />
+        <button onclick="setGoal()">Установить цель</button>
+        <p id="goalLeft"></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
